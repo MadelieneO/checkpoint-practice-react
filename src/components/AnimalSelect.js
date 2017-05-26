@@ -17,14 +17,14 @@ export default class AnimalSelect extends Component {
   }
 
   handleChange(event) {
-    //this.setState({ animalSelected: event.target.value });
+    //event.preventDefault(); -->> only done on 'onSubmit'
     this.props.submitAnimal(event.target.value);
   }
 
   render() {
     return (
       <form>
-        <label for="animalSelect">Select an Animal: </label>
+        <label htmlFor="animalSelect">Select an Animal: </label>
         <select name="animalSelect" onChange={this.handleChange}>
           {this.props.animals.map(animal => <option key={animal}>{animal}</option>)}
 

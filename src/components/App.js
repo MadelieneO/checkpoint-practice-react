@@ -1,3 +1,4 @@
+'use strict';
 /*
 This file is NOT necessary to edit for the test specs
 */
@@ -14,21 +15,17 @@ export default class App extends Component {
         super();
         // The below code will be useful if you want to use your redux store as the one source of truth
          this.state = store.getState();
-        // this.state =  {
-        //     selectedMammal : "Tiger",
-        //     selectedBird : "Eagle",
-        //     selectedFish : "Seahorse",
-        //     mammals: ['Tiger', 'Panda', 'Pig'],
-        //     birds: ['Eagle', 'Flamingo', 'Penguin'],
-        //     fish: [ 'Seahorse', 'Octopus', 'Stingray']
-        // };
     }
 
     // The below code will be useful if you want to use your redux store as the one source of state and truth
     componentDidMount() {
-        store.subscribe(() => {
+        this.unsubscribe = store.subscribe(() => {
             this.setState(store.getState());
         });
+    }
+
+    componentDidUnmount() {
+        this.unsubscribe();
     }
 
     render() {
